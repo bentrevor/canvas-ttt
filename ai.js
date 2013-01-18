@@ -3,8 +3,8 @@ function move_for_computer() {
 
   if (!human_played_first)
   {
-    console.log(clicks);
-    if (clicks == 1) {
+    console.log(x_clicks());
+    if (x_clicks() == 1) {
       position = (last_human_move + 3) % 8;
       console.log("lhm: " + last_human_move);
       console.log("position: " + position);

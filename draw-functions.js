@@ -93,7 +93,9 @@ function draw_o_at(position) {
 }
 
 function put_x_in(position) {
+  console.log("put x")
   if (check_empty(position)){
+    console.log("check_empty passes")
     draw_x_at(position);
     x_positions[position] = 1;
     clicks++;

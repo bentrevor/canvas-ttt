@@ -6,6 +6,7 @@ var first_question = new Image();
 var x_positions = [0,0,0,0,0,0,0,0,0];
 var o_positions = [0,0,0,0,0,0,0,0,0];
 var human_played_first = false;
+var game_started = false;
 var last_human_move = null;
 
 function init() {
@@ -55,23 +56,25 @@ function get_cursor_position(e) {
 
 function handle_mouse_click(e) {
   var position = get_cursor_position(e);
-  // console.log(clicks);
 
   // handle first click to decide who goes first
-  if (x_clicks() == 0) {
+  if (!game_started) {
     if (position == 7) {
       // human plays first
       human_played_first = true;
       draw_grid();
+      game_started = true;
     }
     else if (position == 3) {
       // computer plays first
       draw_grid();
       put_o_in(8);
+      game_started = true;
     }
   }
   else {
-    console.log("hey");
+    console.log("position: " + position)
+
     put_x_in(position);
     move_for_computer();
   }
