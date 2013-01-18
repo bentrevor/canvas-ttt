@@ -1,33 +1,38 @@
 var canvas;
 var context;
-var clicks = -1;
+var clicks = 0;
 var first_question = new Image();
+// var open_positions = [0,1,2,3,4,5,6,7,8]
+var x_positions = [0,0,0,0,0,0,0,0,0]
+var o_positions = [0,0,0,0,0,0,0,0,0]
+
 
 
 function handle_mouse_click(e) {
-  clicks += 1;
+  var position = get_cursor_position(e);
 
   // handle first click to decide who goes first
   if (clicks == 0) {
-    context.clearRect(0,0,300,300);
-
-    // draw grid
-    context.fillRect(98,0,4,300);
-    context.fillRect(198,0,4,300);
-    context.fillRect(0,98,300,4);
-    context.fillRect(0,198,300,4);
-
-    if (get_cursor_position(e) == 7) {
-      human_plays_first();
+    if (position == 7) {
+      // human plays first
+      clicks++;
+      draw_grid();
     }
-    else if (get_cursor_position(e) == 3) {
-      computer_plays_first();
+    else if (position == 3) {
+      // computer plays first
+      clicks++;
+      draw_grid();
+      put_o_in(8);
+
     }
   }
 
-  var position = get_cursor_position(e);
-  draw_x_at(position);
+  console.log(x_positions);
+  console.log(o_positions);
 
+
+
+  put_x_in(position);
 }
 
 function get_cursor_position(e) {
@@ -64,27 +69,21 @@ function get_cursor_position(e) {
 
 function init() {
   canvas = document.getElementById('myCanvas');
-  context = canvas.getContext('2d');
-
-  // draw grid
-  context.fillRect(98,0,4,300);
-  context.fillRect(198,0,4,300);
-  context.fillRect(0,98,300,4);
-  context.fillRect(0,198,300,4);
-
   canvas.addEventListener("click", handle_mouse_click, false);
+  context = canvas.getContext('2d');
 
   first_question.onload = function() {
     context.drawImage(first_question, 0, 0);
   }
   first_question.src = 'images/first-question.png'
-
 }
 
-function computer_plays_first() {
-  draw_x_at(1);
-}
-function human_plays_first() {
-  draw_x_at(5);
+function put_x_in(position) {
+  draw_x_at(position);
+  x_positions[position] = 1;
 }
 
+function put_o_in(position) {
+  draw_o_at(position);
+  o_positions[position] = 1;
+}

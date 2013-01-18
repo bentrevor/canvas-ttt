@@ -6,7 +6,7 @@ This is how I numbered the board:
     7 8 3
     6 5 4
 
-This was the convenient for two reasons.  A few times, the Computer has to decide to move relative to the Human's last move, and this numbering scheme makes that easy.  I also took advantage of the fact that all the edge positions are odd and all the corners are even.
+This was the convenient for two reasons.  A few times, the Computer has to decide to move relative to the Human's last move, and this numbering scheme makes that easy.  I also took advantage of the fact that all the edge positions are odd and all the corners are even.  The only downside is that it made the code to get the cursor position and to draw X's and O's a little ugly.
 
 
 #### Strategy

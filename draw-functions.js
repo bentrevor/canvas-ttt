@@ -82,3 +82,12 @@ function draw_o(x, y) {
   context.stroke()
   context.closePath();
 }
+
+function draw_grid() {
+  context.clearRect(0,0,300,300);
+
+  context.fillRect(98,0,4,300);
+  context.fillRect(198,0,4,300);
+  context.fillRect(0,98,300,4);
+  context.fillRect(0,198,300,4);
+}
