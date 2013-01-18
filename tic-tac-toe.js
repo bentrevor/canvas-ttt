@@ -73,7 +73,7 @@ function handle_mouse_click(e) {
     }
   }
   else {
-    console.log("position: " + position)
+    // console.log("position: " + position)
 
     put_x_in(position);
     move_for_computer();
