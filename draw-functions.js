@@ -1,3 +1,33 @@
+function draw_grid() {
+  context.clearRect(0,0,300,300);
+
+  context.fillRect(98,0,4,300);
+  context.fillRect(198,0,4,300);
+  context.fillRect(0,98,300,4);
+  context.fillRect(0,198,300,4);
+}
+
+function draw_x(x, y) {
+  context.beginPath();
+  context.moveTo(x,y);
+  context.lineTo(x + 90,y + 90);
+  context.stroke();
+  context.closePath();
+
+  context.beginPath();
+  context.moveTo(x + 90, y);
+  context.lineTo(x, y + 90);
+  context.stroke();
+  context.closePath();
+}
+
+function draw_o(x, y) {
+  context.beginPath();
+  context.arc(x, y, 45, 0, 7, false);
+  context.stroke()
+  context.closePath();
+}
+
 function draw_x_at(position) {
   switch (position) {
     case 0:
@@ -62,32 +92,14 @@ function draw_o_at(position) {
   }
 }
 
-function draw_x(x, y) {
-  context.beginPath();
-  context.moveTo(x,y);
-  context.lineTo(x + 90,y + 90);
-  context.stroke();
-  context.closePath();
-
-  context.beginPath();
-  context.moveTo(x + 90, y);
-  context.lineTo(x, y + 90);
-  context.stroke();
-  context.closePath();
+function put_x_in(position) {
+  draw_x_at(position);
+  x_positions[position] = 1;
+  clicks++;
 }
 
-function draw_o(x, y) {
-  context.beginPath();
-  context.arc(x, y, 45, 0, 7, false);
-  context.stroke()
-  context.closePath();
+function put_o_in(position) {
+  draw_o_at(position);
+  o_positions[position] = 1;
 }
 
-function draw_grid() {
-  context.clearRect(0,0,300,300);
-
-  context.fillRect(98,0,4,300);
-  context.fillRect(198,0,4,300);
-  context.fillRect(0,98,300,4);
-  context.fillRect(0,198,300,4);
-}

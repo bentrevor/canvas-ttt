@@ -3,36 +3,19 @@ var context;
 var clicks = 0;
 var first_question = new Image();
 // var open_positions = [0,1,2,3,4,5,6,7,8]
-var x_positions = [0,0,0,0,0,0,0,0,0]
-var o_positions = [0,0,0,0,0,0,0,0,0]
+var x_positions = [0,0,0,0,0,0,0,0,0];
+var o_positions = [0,0,0,0,0,0,0,0,0];
+var human_played_first = false;
 
+function init() {
+  canvas = document.getElementById('myCanvas');
+  canvas.addEventListener("click", handle_mouse_click, false);
+  context = canvas.getContext('2d');
 
-
-function handle_mouse_click(e) {
-  var position = get_cursor_position(e);
-
-  // handle first click to decide who goes first
-  if (clicks == 0) {
-    if (position == 7) {
-      // human plays first
-      clicks++;
-      draw_grid();
-    }
-    else if (position == 3) {
-      // computer plays first
-      clicks++;
-      draw_grid();
-      put_o_in(8);
-
-    }
+  first_question.onload = function() {
+    context.drawImage(first_question, 0, 0);
   }
-
-  console.log(x_positions);
-  console.log(o_positions);
-
-
-
-  put_x_in(position);
+  first_question.src = 'images/first-question.png'
 }
 
 function get_cursor_position(e) {
@@ -67,23 +50,30 @@ function get_cursor_position(e) {
   }
 }
 
-function init() {
-  canvas = document.getElementById('myCanvas');
-  canvas.addEventListener("click", handle_mouse_click, false);
-  context = canvas.getContext('2d');
 
-  first_question.onload = function() {
-    context.drawImage(first_question, 0, 0);
+
+function handle_mouse_click(e) {
+  var position = get_cursor_position(e);
+
+  // handle first click to decide who goes first
+  if (clicks == 0) {
+    if (position == 7) {
+      // human plays first
+      human_played_first = true;
+      clicks++;
+      draw_grid();
+    }
+    else if (position == 3) {
+      // computer plays first
+      clicks++;
+      draw_grid();
+      put_o_in(8);
+    }
   }
-  first_question.src = 'images/first-question.png'
-}
+  else {
+    move_for_computer();
+  }
 
-function put_x_in(position) {
-  draw_x_at(position);
-  x_positions[position] = 1;
-}
-
-function put_o_in(position) {
-  draw_o_at(position);
-  o_positions[position] = 1;
+  console.log("x positions: " + x_positions);
+  console.log("o positions: " + o_positions);
 }
