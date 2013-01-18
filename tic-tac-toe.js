@@ -5,6 +5,14 @@ var first_question = new Image();
 // var open_positions = [0,1,2,3,4,5,6,7,8]
 var x_positions = [0,0,0,0,0,0,0,0,0];
 var o_positions = [0,0,0,0,0,0,0,0,0];
+var winning_combinations = [[0,1,2],
+                            [7,8,3],
+                            [6,5,4],
+                            [0,7,6],
+                            [1,8,5],
+                            [2,3,4],
+                            [0,8,4],
+                            [6,2,8]];
 var human_played_first = false;
 var game_started = false;
 var last_human_move = null;
@@ -72,11 +80,9 @@ function handle_mouse_click(e) {
       game_started = true;
     }
   }
-  else {
-    // console.log("position: " + position)
-
-    put_x_in(position);
-    move_for_computer();
+  else if (check_empty(position)){
+      put_x_in(position);
+      move_for_computer();
   }
 
   console.log("x positions: " + x_positions);

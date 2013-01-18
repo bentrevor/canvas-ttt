@@ -18,16 +18,19 @@ function move_for_computer() {
 }
 
 function try_to_win() {  
-  put_o_in(position);
+  // put_o_in(position);
 }
+
 function try_to_block() {
-  put_o_in(position);
+  // put_o_in(position);
   
 }
+
 function default_move() {
   for (var i = 0; i < 8; i++) {
     if (check_empty(i)) {
       put_o_in(i);
+      break;
     }
   }
 }

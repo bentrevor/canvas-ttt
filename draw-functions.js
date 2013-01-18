@@ -93,12 +93,10 @@ function draw_o_at(position) {
 }
 
 function put_x_in(position) {
-  if (check_empty(position)){
-    draw_x_at(position);
-    x_positions[position] = 1;
-    clicks++;
-    last_human_move = position;
-  }
+  draw_x_at(position);
+  x_positions[position] = 1;
+  last_human_move = position;
+  console.log(last_human_move);
 }
 
 function put_o_in(position) {
