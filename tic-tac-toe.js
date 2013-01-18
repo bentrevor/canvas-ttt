@@ -1,11 +1,12 @@
-var canvas;
-var context;
+var canvas = null;
+var context = null;
 var clicks = 0;
 var first_question = new Image();
 // var open_positions = [0,1,2,3,4,5,6,7,8]
 var x_positions = [0,0,0,0,0,0,0,0,0];
 var o_positions = [0,0,0,0,0,0,0,0,0];
 var human_played_first = false;
+var last_human_move = null;
 
 function init() {
   canvas = document.getElementById('myCanvas');
@@ -54,26 +55,38 @@ function get_cursor_position(e) {
 
 function handle_mouse_click(e) {
   var position = get_cursor_position(e);
+  // console.log(clicks);
 
   // handle first click to decide who goes first
-  if (clicks == 0) {
+  if (x_clicks() == 0) {
     if (position == 7) {
       // human plays first
       human_played_first = true;
-      clicks++;
       draw_grid();
     }
     else if (position == 3) {
       // computer plays first
-      clicks++;
       draw_grid();
       put_o_in(8);
     }
   }
   else {
+    console.log("hey");
+    put_x_in(position);
     move_for_computer();
   }
 
   console.log("x positions: " + x_positions);
   console.log("o positions: " + o_positions);
+}
+
+function x_clicks() {
+  var total = 0;
+  for (i = 0; i < 8; i++) {
+    if (x_positions[i] == 1) {
+      total++;
+    }
+  }
+
+  return total;
 }

@@ -93,13 +93,26 @@ function draw_o_at(position) {
 }
 
 function put_x_in(position) {
-  draw_x_at(position);
-  x_positions[position] = 1;
-  clicks++;
+  if (check_empty(position)){
+    draw_x_at(position);
+    x_positions[position] = 1;
+    clicks++;
+    last_human_move = position;
+  }
 }
 
 function put_o_in(position) {
-  draw_o_at(position);
-  o_positions[position] = 1;
+  if (check_empty(position)){
+    draw_o_at(position);
+    o_positions[position] = 1;
+  }
 }
 
+function check_empty(position) {
+  if (x_positions[position] == 0 && o_positions[position] == 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
