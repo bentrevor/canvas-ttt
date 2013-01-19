@@ -27,17 +27,15 @@ function try_to_win() {
         o_positions[winning_combo[2]] == 2) && (x_positions[winning_combo[0]] + 
         x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 0))
       {
-      console.log("ugly conditional is passing...");
       // find the empty position, fill it in with O, and end the game
       for (var j = 0; j < 3; j++) {
         var final_move = winning_combo[j];
-        console.log("final: " + final_move);
-        console.log("op: " + o_positions[final_move]);
+
         if (o_positions[final_move] == 0) {
           put_o_in(final_move);
-          alert('game over');
+          // alert('game over');
           // draw_winning_line(i);
-          // game_over();
+          game_over();
         }
       }
     }
@@ -55,4 +53,14 @@ function default_move() {
       break;
     }
   }
+}
+
+function game_over() {
+  for (var i = 0; i < 8; i++) {
+    // prevent any more clicks from registering as valid moves
+    x_positions[i] = 1;
+    o_positions[i] = 1;
+  }
+
+  alert("You didn't win.  Refresh the page to play again.");
 }

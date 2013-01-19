@@ -7,18 +7,17 @@ function draw_grid() {
   context.fillRect(0,198,300,4);
 }
 
-function draw_x(x, y) {
+function draw_line(start_x, start_y, end_x, end_y) {
   context.beginPath();
-  context.moveTo(x,y);
-  context.lineTo(x + 90,y + 90);
+  context.moveTo(start_x, start_y);
+  context.lineTo(end_x, end_y);
   context.stroke();
   context.closePath();
+}
 
-  context.beginPath();
-  context.moveTo(x + 90, y);
-  context.lineTo(x, y + 90);
-  context.stroke();
-  context.closePath();
+function draw_x(x, y) {
+  draw_line(x, y, x + 90, y + 90);
+  draw_line(x + 90, y, x, y + 90);
 }
 
 function draw_o(x, y) {
@@ -112,5 +111,12 @@ function check_empty(position) {
   }
   else {
     return false;
+  }
+}
+
+function draw_winning_line(combo) {
+  switch (combo) {
+    case 0:
+
   }
 }
