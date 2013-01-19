@@ -10,22 +10,29 @@ function move_for_computer() {
         game_over();
         break;
       default:
-        try_to_win();
-        blocked = false;
-        try_to_block();
-        if (!blocked) {
-          default_move();
-        }
+        default_move();
     }
   }
 
   else if (x_positions[8] == 1) { // if Human played center first
+    // console.log("x clicks: " + x_clicks());
     switch (x_clicks()) {
       case 1:
         default_move();
-
-      // case 2:
-
+        break;
+      case 2:
+        if (last_human_move == 4) {
+          put_o_in(2);
+        }
+        else {
+          default_move();
+        }
+        break;
+      case 5:
+        game_over();
+        break;
+      default:
+        default_move();
     }
   }
 
@@ -86,10 +93,15 @@ function try_to_block() {
 }
 
 function default_move() {
-  for (var i = 0; i < 8; i++) {
-    if (check_empty(i)) {
-      put_o_in(i);
-      break;
+  try_to_win();
+  blocked = false;
+  try_to_block();
+  if (!blocked) {
+    for (var i = 0; i < 8; i++) {
+      if (check_empty(i)) {
+        put_o_in(i);
+        break;
+      }
     }
   }
 }

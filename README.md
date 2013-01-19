@@ -60,7 +60,7 @@ The win/block/default rule forces a tie for every move the Human can make except
      | |         | |X        | |X
  
 
-To prevent this fork, the Computer just needs to move to another one of the corners, or 2 positions away from the Human's last move.
+To prevent this fork, the Computer just needs to move to another one of the corners.
 
 The only other cases I had to cover were if the Human's first move was to a corner or an edge.  If the Human's two first moves need to be blocked, then the game ends in a series of forced blocks where setting up a fork is impossible.  This left four combinations for the Human to win:
 
