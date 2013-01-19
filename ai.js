@@ -1,30 +1,42 @@
 function move_for_computer() {
   if (!human_played_first) {
-    // first move already played in center position
-
-    // second move is three positions away from Human's move
-    if (x_clicks() == 1) {
-      put_o_in((last_human_move + 3) % 8);
-    }
-    // rest of the moves just need to win or block
-    else {
-      try_to_win();
-      blocked = false;
-      try_to_block();
-      if (!blocked) {
+    switch (x_clicks()) {
+      // first move was already to the center position
+      case 1: // second move
+        put_o_in((last_human_move + 3) % 8);
+        break;
+      case 4: // after 4 Human moves, the board is full and the game is tied
         default_move();
-      }
-    }
-
-    // game is tied if the Human has made 4 moves
-    if (x_clicks() == 4) {
-      game_over();
+        game_over();
+        break;
+      default:
+        try_to_win();
+        blocked = false;
+        try_to_block();
+        if (!blocked) {
+          default_move();
+        }
     }
   }
 
-  else // if human played first
-  {
-    console.log("TODO: ai for human playing first")
+  else if (x_positions[8] == 1) { // if Human played center first
+    switch (x_clicks()) {
+      case 1:
+        default_move();
+
+      // case 2:
+
+    }
+  }
+
+  else { // Human played non-center first
+    switch (x_clicks()) {
+      case 1:
+        put_o_in(8);
+
+      // case 2:
+
+    }
   }
 }
 
@@ -44,7 +56,6 @@ function try_to_win() {
 
         if (o_positions[final_move] == 0) {
           put_o_in(final_move);
-          // alert('game over');
           draw_winning_line(i);
           game_over();
         }
