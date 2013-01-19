@@ -15,6 +15,7 @@ var winning_combinations = [[0,1,2],
 var human_played_first = false;
 var game_started = false;
 var last_human_move = null;
+var blocked = false;
 
 function init() {
   canvas = document.getElementById('myCanvas');

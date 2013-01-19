@@ -6,8 +6,11 @@ function move_for_computer() {
     }
     else {
       try_to_win();
+      blocked = false;
       try_to_block();
-      default_move();
+      if (!blocked) {
+        default_move();
+      }
     }
   }
 
@@ -56,6 +59,7 @@ function try_to_block() {
 
         if (x_positions[blocking_move] == 0) {
           put_o_in(blocking_move);
+          blocked = true;
         }
       }
     }
