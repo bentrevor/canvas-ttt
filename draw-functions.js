@@ -96,7 +96,7 @@ function put_x_in(position) {
   draw_x_at(position);
   x_positions[position] = 1;
   last_human_move = position;
-  console.log(last_human_move);
+  console.log("last_human_move (in put_x_in()): " + last_human_move);
 }
 
 function put_o_in(position) {

@@ -1,6 +1,5 @@
 var canvas = null;
 var context = null;
-var clicks = 0;
 var first_question = new Image();
 // var open_positions = [0,1,2,3,4,5,6,7,8]
 var x_positions = [0,0,0,0,0,0,0,0,0];
@@ -90,12 +89,6 @@ function handle_mouse_click(e) {
 }
 
 function x_clicks() {
-  var total = 0;
-  for (i = 0; i < 8; i++) {
-    if (x_positions[i] == 1) {
-      total++;
-    }
-  }
-
-  return total;
+  return x_positions[0] + x_positions[1] + x_positions[2] + x_positions[3] + 
+    x_positions[4] + x_positions[5] + x_positions[6] + x_positions[7] + x_positions[8];
 }
