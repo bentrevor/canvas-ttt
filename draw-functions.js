@@ -92,6 +92,7 @@ function draw_o_at(position) {
 }
 
 function put_x_in(position) {
+  // don't need to check_empty() because it is called in handle_mouse_click()
   draw_x_at(position);
   x_positions[position] = 1;
   last_human_move = position;

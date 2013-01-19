@@ -1,9 +1,12 @@
 function move_for_computer() {
-  if (!human_played_first)
-  {
+  if (!human_played_first) {
+    // first move already played in center position
+
+    // second move is three positions away from Human's move
     if (x_clicks() == 1) {
       put_o_in((last_human_move + 3) % 8);
     }
+    // rest of the moves just need to win or block
     else {
       try_to_win();
       blocked = false;
@@ -11,6 +14,11 @@ function move_for_computer() {
       if (!blocked) {
         default_move();
       }
+    }
+
+    // game is tied if the Human has made 4 moves
+    if (x_clicks() == 4) {
+      game_over();
     }
   }
 
