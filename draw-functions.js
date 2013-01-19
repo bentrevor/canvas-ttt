@@ -106,12 +106,7 @@ function put_o_in(position) {
 }
 
 function check_empty(position) {
-  if (x_positions[position] == 0 && o_positions[position] == 0) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return x_positions[position] == 0 && o_positions[position] == 0
 }
 
 function draw_winning_line(combo) {

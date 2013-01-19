@@ -84,9 +84,6 @@ function handle_mouse_click(e) {
       put_x_in(position);
       move_for_computer();
   }
-
-  console.log("x positions: " + x_positions);
-  console.log("o positions: " + o_positions);
 }
 
 function x_clicks() {
