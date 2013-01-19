@@ -6,7 +6,7 @@ function move_for_computer() {
     }
     else {
       try_to_win();
-      // try_to_block();
+      try_to_block();
       default_move();
     }
   }
@@ -43,7 +43,23 @@ function try_to_win() {
 }
 
 function try_to_block() {
-  
+  // same logic as the try_to_win() function
+  for (var i = 0; i < 8; i++) {
+    var winning_combo = winning_combinations[i];
+
+    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
+        o_positions[winning_combo[2]] == 0) && (x_positions[winning_combo[0]] + 
+        x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 2))
+    {
+      for (var j = 0; j < 3; j++) {
+        var blocking_move = winning_combo[j];
+
+        if (x_positions[blocking_move] == 0) {
+          put_o_in(blocking_move);
+        }
+      }
+    }
+  }
 }
 
 function default_move() {
