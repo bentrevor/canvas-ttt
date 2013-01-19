@@ -117,6 +117,28 @@ function check_empty(position) {
 function draw_winning_line(combo) {
   switch (combo) {
     case 0:
-
+      draw_line(20, 50, 280, 50);
+      break;
+    case 1:
+      draw_line(20, 150, 280, 150);
+      break;
+    case 2:
+      draw_line(20, 250, 280, 250);
+      break;
+    case 3:
+      draw_line(50, 20, 50, 280);
+      break;
+    case 4:
+      draw_line(150, 20, 150, 280);
+      break;
+    case 5:
+      draw_line(250, 20, 250, 280);
+      break;
+    case 6:
+      draw_line(20, 20, 280, 280);
+      break;
+    case 7:
+      draw_line(20, 280, 280, 20);
+      break;
   }
 }

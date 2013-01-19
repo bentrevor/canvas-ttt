@@ -34,7 +34,7 @@ function try_to_win() {
         if (o_positions[final_move] == 0) {
           put_o_in(final_move);
           // alert('game over');
-          // draw_winning_line(i);
+          draw_winning_line(i);
           game_over();
         }
       }
