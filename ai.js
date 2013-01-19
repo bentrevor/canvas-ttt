@@ -40,8 +40,45 @@ function move_for_computer() {
     switch (x_clicks()) {
       case 1:
         put_o_in(8);
+        break;
+      case 2:
+        win_or_block();
+        var smaller = get_smaller();
+        var larger = get_larger();
 
-      // case 2:
+        // if first two moves are odd (edges), move exactly between them
+        if (smaller % 2 == 1 && larger % 2 == 1) {
+          // handle special case
+          if (smaller == 1 && larger == 7) {
+            put_o_in(0);
+          }
+          else {
+            put_o_in((smaller + larger)/2);
+          }
+        }
+        
+        // if first two moves are opposite corners, move to any edge
+        else if (smaller % 2 == 0 && larger - smaller == 4) {
+          put_o_in(1);
+        }
+
+        // if first two moves are corner and non-adjacent edge, move between smaller gap
+        else if (larger - smaller == 3) {
+          put_o_in(larger - 1);
+        }
+
+        else if (larger - smaller == 5) {
+          put_o_in((larger + 1) % 8);
+        }
+
+        break;
+      case 5:
+        game_over();
+        break;
+
+      default:
+        default_move();
+
 
     }
   }
@@ -93,9 +130,7 @@ function try_to_block() {
 }
 
 function default_move() {
-  try_to_win();
-  blocked = false;
-  try_to_block();
+  win_or_block();
   if (!blocked) {
     for (var i = 0; i < 8; i++) {
       if (check_empty(i)) {
@@ -114,4 +149,26 @@ function game_over() {
   }
 
   alert("You didn't win.  Refresh the page to play again.");
+}
+
+function win_or_block() {
+  try_to_win();
+  blocked = false;
+  try_to_block();
+}
+
+function get_smaller() {
+  for (var i = 0; i < 8; i++) {
+    if (x_positions[i] == 1) {
+      return i;
+    }
+  }
+}
+
+function get_larger() {
+  for (var i = 0; i < 8; i++) {
+    if (x_positions[7 - i] == 1) {
+      return 7 - i;
+    }
+  }
 }
