@@ -1,6 +1,6 @@
 There are a limited number of possible tic-tac-toe games, so it is relatively simple to hardcode the entire tree of optimal moves.  I didn't know if that could be considered "AI", so I tried to develop a general set of rules so the Computer could decide on a move based on the conditions of the board rather than following a set of explicitly prescribed moves.
 
-In order to keep the AI as simple as possible, I made it just avoid losing rather than trying to play the "best" move.  The only way to win is to set up a situation where you have two winning moves (we'll call it a "fork"), so to avoid losing, the Computer just has to prevent the Human from setting up a fork.  It turned out that two moves is enough to guarantee that you won't lose a game, so for every move after the first two, all the Computer has to do is win or block, if possible.
+In order to keep the AI as simple as possible, I made it just avoid losing rather than trying to play the "best" move.  The only way to win is to set up a situation where you have two winning moves (we'll call it a "fork"), so to avoid losing, the Computer just has to prevent the Human from setting up a fork.  It turned out that two moves is enough to guarantee that you won't lose a game, so for every move after the first two, all the Computer has to do is win or block, if possible.  All of the logic behind the Computer's decisions is in the `move_for_computer()` function in `ai.js`.
 
 This is how I numbered the board:
 
