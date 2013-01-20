@@ -148,7 +148,9 @@ function game_over() {
     o_positions[i] = 1;
   }
 
-  alert("You didn't win.  Refresh the page to play again.");
+  var game_over_text = document.createTextNode("You didn't win.  Refresh the page to play again.");
+
+  document.body.insertBefore(game_over_text, document.body.firstChild.nextSibling.nextSibling);
 }
 
 function win_or_block() {
