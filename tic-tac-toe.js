@@ -25,7 +25,9 @@ function init() {
   first_question.onload = function() {
     context.drawImage(first_question, 0, 0);
   }
-  first_question.src = 'assets/first-question.png'
+  // first_question.src = 'assets/first-question.png'
+  // context.font = "18pt Arial";
+  // context.fillText("Do you want to go first?", 20, 20);
 }
 
 function get_cursor_position(e) {
