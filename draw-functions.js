@@ -94,9 +94,12 @@ function draw_o_at(position) {
 function put_x_in(position) {
   // don't need to check_empty() because it is already called in handle_mouse_click()
   draw_x_at(position);
+  place_image('assets/x.png');
   x_positions[position] = 1;
   last_human_move = position;
 }
+
+
 
 function put_o_in(position) {
   if (check_empty(position)){
@@ -136,4 +139,12 @@ function draw_winning_line(combo) {
       draw_line(20, 280, 280, 20);
       break;
   }
+}
+
+function place_image(path) {
+  var img = new Image();
+  img.onload = function() {
+    context.drawImage(img, 10, 10);
+  }
+  img.src = path;
 }
