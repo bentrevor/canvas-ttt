@@ -8,14 +8,14 @@ function draw_line(start_x, start_y, end_x, end_y) {
 
 function put_x_in(position) {
   // don't need to check_empty() because it is already called in handle_mouse_click()
-  place_image('assets/x.png', position);
+  place_image(x_img, position);
   x_positions[position] = 1;
   last_human_move = position;
 }
 
 function put_o_in(position) {
   if (check_empty(position)){
-    place_image('assets/o.png', position);
+    place_image(o_img, position);
     o_positions[position] = 1;
   }
 }
@@ -27,8 +27,6 @@ function check_empty(position) {
 function draw_winning_line(combo) {
   context.lineWidth = 4;
   context.strokeStyle = "red";
-  // alert('called');
-  draw_line(20, 50, 280, 50);
 
   switch (combo) {
     case 0:
@@ -58,24 +56,23 @@ function draw_winning_line(combo) {
   }
 }
 
-function place_image(path, position) {
+function place_image(image, position) {
   var x = get_x_from_position(position);
   var y = get_y_from_position(position);
-  var img = new Image();
-  img.onload = function() {
-    context.drawImage(img, x + 6, y + 6);
-  }
-  img.src = path;
+
+  context.drawImage(image, x, y);
 }
 
 function get_x_from_position(position) {
   if (position == 8) return 100;
-  var answer = (parseInt(2.5 * Math.sin(position * .5)) * 100);
-  return (answer > 0) ? answer : 0;
+
+  var coordinate = (parseInt(2.5 * Math.sin(position * .5)) * 100);
+  return (coordinate > 0) ? coordinate : 0;
 }
 
 function get_y_from_position(position) {
   if (position == 8) return 100;
-  var answer = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
-  return (answer > 0) ? answer : 0;
+
+  var coordinate = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
+  return (coordinate > 0) ? coordinate : 0;
 }

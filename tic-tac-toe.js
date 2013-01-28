@@ -14,11 +14,16 @@ var human_played_first = false;
 var game_started = false;
 var last_human_move = null;
 var blocked = false;
+var x_img = new Image();
+var o_img = new Image();
 
 function init() {
   canvas = document.getElementById('myCanvas');
   canvas.addEventListener("click", handle_mouse_click, false);
   context = canvas.getContext('2d');
+  
+  x_img.src = 'assets/x.png';
+  o_img.src = 'assets/o.png';
 }
 
 function get_cursor_position(e) {
