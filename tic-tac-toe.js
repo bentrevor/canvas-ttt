@@ -10,7 +10,8 @@ var winning_combinations = [[0,1,2],
                             [2,3,4],
                             [0,8,4],
                             [6,8,2]];
-// var human_played_first = false;
+var TOTAL_POSITIONS = x_positions.length;
+var TOTAL_WINNING_COMBINATIONS = winning_combinations.length;
 var game_started = false;
 var last_human_move = null;
 var blocked = false;

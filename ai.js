@@ -1,6 +1,6 @@
 function move_for_computer() {
-  console.log("o: " + o_positions);
-  console.log("x: " + x_positions);
+  console.log(TOTAL_WINNING_COMBINATIONS);
+  console.log(TOTAL_POSITIONS);
   if (!human_played_first()) {
     switch (x_clicks()) {
       // first move was already to the center position
@@ -85,7 +85,7 @@ function move_for_computer() {
 
 function try_to_win() {
   // iterate through winning_combinations array
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
     var winning_combo = winning_combinations[i];
     // if the Computer has exactly 2 out of 3 positions in any winning combination
     // and the Human doesn't have the other one, the Computer can win
@@ -109,7 +109,7 @@ function try_to_win() {
 
 function try_to_block() {
   // same logic as the try_to_win() function
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
     var winning_combo = winning_combinations[i];
 
     if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
@@ -131,7 +131,7 @@ function try_to_block() {
 function default_move() {
   win_or_block();
   if (!blocked) {
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < TOTAL_POSITIONS; i++) {
       if (check_empty(i)) {
         put_o_in(i);
         break;
@@ -141,7 +141,7 @@ function default_move() {
 }
 
 function game_over() {
-  for (var i = 0; i < 9; i++) {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
     // prevent any more clicks from registering as valid moves
     x_positions[i] = 1;
     o_positions[i] = 1;
@@ -159,7 +159,7 @@ function win_or_block() {
 }
 
 function get_smaller() {
-  for (var i = 0; i < 9; i++) {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
     if (x_positions[i] == 1) {
       return i;
     }
@@ -167,7 +167,7 @@ function get_smaller() {
 }
 
 function get_larger() {
-  for (var i = 0; i < 9; i++) {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
     if (x_positions[7 - i] == 1) {
       return 7 - i;
     }
