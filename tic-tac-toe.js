@@ -73,14 +73,14 @@ function handle_mouse_click(e) {
 
   // handle first click to decide who goes first
   if (!game_started) {
-    if (position == 7) {
+    if (position == "yes") {
       // human plays first
-      game_started = true;
+      begin_game();
     }
-    else if (position == 3) {
+    else if (position == "no") {
       // computer plays first
       put_o_in(8);
-      game_started = true;
+      begin_game();
     }
   }
   else if (check_empty(position)){
@@ -97,4 +97,9 @@ function game_over() {
   }
 
   draw_game_over_text();
+}
+
+function begin_game() {
+  game_started = true;
+  context.clearRect(0, 300, 300, 150);
 }
