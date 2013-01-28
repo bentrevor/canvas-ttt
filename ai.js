@@ -158,18 +158,3 @@ function win_or_block() {
   try_to_block();
 }
 
-function get_smaller() {
-  for (var i = 0; i < TOTAL_POSITIONS; i++) {
-    if (x_positions[i] == 1) {
-      return i;
-    }
-  }
-}
-
-function get_larger() {
-  for (var i = 0; i < TOTAL_POSITIONS; i++) {
-    if (x_positions[7 - i] == 1) {
-      return 7 - i;
-    }
-  }
-}
