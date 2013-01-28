@@ -1,11 +1,3 @@
-function draw_line(start_x, start_y, end_x, end_y) {
-  context.beginPath();
-  context.moveTo(start_x, start_y);
-  context.lineTo(end_x, end_y);
-  context.stroke();
-  context.closePath();
-}
-
 function put_x_in(position) {
   // don't need to check_empty() because it is already called in handle_mouse_click()
   place_image(x_img, position);
@@ -25,35 +17,19 @@ function check_empty(position) {
 }
 
 function draw_winning_line(combo) {
-  context.lineWidth = 4;
+  var start_x = get_x_from_position(winning_combinations[combo][0]) + 50;
+  var start_y = get_y_from_position(winning_combinations[combo][0]) + 50;
+  var end_x = get_x_from_position(winning_combinations[combo][2]) + 50;
+  var end_y = get_y_from_position(winning_combinations[combo][2]) + 50;
+  
+  context.lineWidth = 5;
   context.strokeStyle = "red";
-
-  switch (combo) {
-    case 0:
-      draw_line(20, 50, 280, 50);
-      break;
-    case 1:
-      draw_line(20, 150, 280, 150);
-      break;
-    case 2:
-      draw_line(20, 250, 280, 250);
-      break;
-    case 3:
-      draw_line(50, 20, 50, 280);
-      break;
-    case 4:
-      draw_line(150, 20, 150, 280);
-      break;
-    case 5:
-      draw_line(250, 20, 250, 280);
-      break;
-    case 6:
-      draw_line(20, 20, 280, 280);
-      break;
-    case 7:
-      draw_line(20, 280, 280, 20);
-      break;
-  }
+  context.lineCap = 'round';
+  context.beginPath();
+  context.moveTo(start_x, start_y);
+  context.lineTo(end_x, end_y);
+  context.stroke();
+  context.closePath();
 }
 
 function place_image(image, position) {

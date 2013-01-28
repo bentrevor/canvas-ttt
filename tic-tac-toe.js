@@ -9,7 +9,7 @@ var winning_combinations = [[0,1,2],
                             [1,8,5],
                             [2,3,4],
                             [0,8,4],
-                            [6,2,8]];
+                            [6,8,2]];
 var human_played_first = false;
 var game_started = false;
 var last_human_move = null;
