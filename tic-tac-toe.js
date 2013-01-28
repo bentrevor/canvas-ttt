@@ -1,7 +1,5 @@
 var canvas = null;
 var context = null;
-var first_question = new Image();
-// var open_positions = [0,1,2,3,4,5,6,7,8]
 var x_positions = [0,0,0,0,0,0,0,0,0];
 var o_positions = [0,0,0,0,0,0,0,0,0];
 var winning_combinations = [[0,1,2],
@@ -21,13 +19,6 @@ function init() {
   canvas = document.getElementById('myCanvas');
   canvas.addEventListener("click", handle_mouse_click, false);
   context = canvas.getContext('2d');
-
-  first_question.onload = function() {
-    context.drawImage(first_question, 0, 0);
-  }
-  // first_question.src = 'assets/first-question.png'
-  // context.font = "18pt Arial";
-  // context.fillText("Do you want to go first?", 20, 20);
 }
 
 function get_cursor_position(e) {
@@ -72,12 +63,10 @@ function handle_mouse_click(e) {
     if (position == 7) {
       // human plays first
       human_played_first = true;
-      draw_grid();
       game_started = true;
     }
     else if (position == 3) {
       // computer plays first
-      draw_grid();
       put_o_in(8);
       game_started = true;
     }
