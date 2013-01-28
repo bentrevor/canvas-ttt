@@ -148,3 +148,13 @@ function place_image(path) {
   }
   img.src = path;
 }
+
+function get_x_from_position(position) {
+  var answer = (parseInt(2.5 * Math.sin(position * .5)) * 100);
+  return (answer > 0) ? answer : 0;
+}
+
+function get_y_from_position(position) {
+  var answer = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
+  return (answer > 0) ? answer : 0;
+}
