@@ -93,8 +93,7 @@ function draw_o_at(position) {
 
 function put_x_in(position) {
   // don't need to check_empty() because it is already called in handle_mouse_click()
-  draw_x_at(position);
-  place_image('assets/x.png');
+  place_image('assets/x.png', position);
   x_positions[position] = 1;
   last_human_move = position;
 }
@@ -103,7 +102,7 @@ function put_x_in(position) {
 
 function put_o_in(position) {
   if (check_empty(position)){
-    draw_o_at(position);
+    place_image('assets/o.png', position);
     o_positions[position] = 1;
   }
 }
@@ -141,20 +140,24 @@ function draw_winning_line(combo) {
   }
 }
 
-function place_image(path) {
+function place_image(path, position) {
+  var x = get_x_from_position(position);
+  var y = get_y_from_position(position);
   var img = new Image();
   img.onload = function() {
-    context.drawImage(img, 10, 10);
+    context.drawImage(img, x + 6, y + 6);
   }
   img.src = path;
 }
 
 function get_x_from_position(position) {
+  if (position == 8) return 100;
   var answer = (parseInt(2.5 * Math.sin(position * .5)) * 100);
   return (answer > 0) ? answer : 0;
 }
 
 function get_y_from_position(position) {
+  if (position == 8) return 100;
   var answer = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
   return (answer > 0) ? answer : 0;
 }
