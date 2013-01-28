@@ -25,6 +25,8 @@ function init() {
   
   x_img.src = 'assets/x.png';
   o_img.src = 'assets/o.png';
+
+  draw_menu();
 }
 
 function get_cursor_position(e) {
@@ -42,20 +44,25 @@ function get_cursor_position(e) {
   x -= canvas.offsetLeft;
   y -= canvas.offsetTop;
 
-  if (x < 100) {
-    if (y < 100)            { return 0; }
-    if (y > 100 && y < 200) { return 7; }
-    if (y > 200)            { return 6; }
+  if (y < 100) {
+    if (x < 100)            { return 0; }
+    if (x > 100 && x < 200) { return 1; }
+    if (x > 200)            { return 2; }
   }
-  if (x > 100 && x < 200) {
-    if (y < 100)            { return 1; }
-    if (y > 100 && y < 200) { return 8; }
-    if (y > 200)            { return 5; } 
+  if (y > 100 && y < 200) {
+    if (x < 100)            { return 7; }
+    if (x > 100 && x < 200) { return 8; }
+    if (x > 200)            { return 3; } 
   }
-  if (x > 200) {
-    if (y < 100)            { return 2; }
-    if (y > 100 && y < 200) { return 3; }
-    if (y > 200)            { return 4; }
+  if (y > 200 && y < 300) {
+    if (x < 100)            { return 6; }
+    if (x > 100 && x < 200) { return 5; }
+    if (x > 200)            { return 4; }
+  }
+
+  if (y > 380 && y < 400) {
+    if (x > 50 && x < 110)  { return "yes"; }
+    if (x > 190 && x < 250) { return "no"; }
   }
 }
 
@@ -68,7 +75,6 @@ function handle_mouse_click(e) {
   if (!game_started) {
     if (position == 7) {
       // human plays first
-      // human_played_first = true;
       game_started = true;
     }
     else if (position == 3) {
@@ -90,7 +96,5 @@ function game_over() {
     o_positions[i] = 1;
   }
 
-  var game_over_text = document.createTextNode("You didn't win.  Refresh the page to play again.");
-
-  document.body.insertBefore(game_over_text, document.body.firstChild.nextSibling.nextSibling);
+  draw_game_over_text();
 }

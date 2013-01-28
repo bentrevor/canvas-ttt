@@ -17,6 +17,10 @@ function human_played_first() {
   return sum_of_x > sum_of_o;
 }
 
+function check_empty(position) {
+  return x_positions[position] == 0 && o_positions[position] == 0
+}
+
 // these functions return the larger/smaller of the first two human moves
 function get_larger() {
   for (var i = 0; i < TOTAL_POSITIONS; i++) {
@@ -32,8 +36,4 @@ function get_smaller() {
       return i;
     }
   }
-}
-
-function check_empty(position) {
-  return x_positions[position] == 0 && o_positions[position] == 0
 }
