@@ -53,3 +53,20 @@ function get_y_from_position(position) {
   var coordinate = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
   return (coordinate > 0) ? coordinate : 0;
 }
+
+function draw_menu() {
+  context.font = "16pt Arial";
+  context.fillText("Would you like to go first?", 20, 350);
+  context.font = "12pt Arial";
+  context.fillText("yes", 68, 395);
+  context.fillText("no", 210, 395);
+
+  context.strokeRect(50, 380, 60, 20);
+  context.strokeRect(190, 380, 60, 20);
+}
+
+function draw_game_over_text() {
+  context.font = "12pt Arial";
+  context.fillText("You did not win.", 90, 350);
+  context.fillText("Refresh the page to play again.", 40, 370);
+}
