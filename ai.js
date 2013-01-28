@@ -1,5 +1,7 @@
 function move_for_computer() {
-  if (!human_played_first) {
+  console.log("o: " + o_positions);
+  console.log("x: " + x_positions);
+  if (!human_played_first()) {
     switch (x_clicks()) {
       // first move was already to the center position
       case 1: // second move
@@ -15,7 +17,6 @@ function move_for_computer() {
   }
 
   else if (x_positions[8] == 1) { // if Human played center first
-    // console.log("x clicks: " + x_clicks());
     switch (x_clicks()) {
       case 1:
         default_move();
@@ -78,8 +79,6 @@ function move_for_computer() {
 
       default:
         default_move();
-
-
     }
   }
 }
@@ -132,7 +131,7 @@ function try_to_block() {
 function default_move() {
   win_or_block();
   if (!blocked) {
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 9; i++) {
       if (check_empty(i)) {
         put_o_in(i);
         break;
@@ -142,7 +141,7 @@ function default_move() {
 }
 
 function game_over() {
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 9; i++) {
     // prevent any more clicks from registering as valid moves
     x_positions[i] = 1;
     o_positions[i] = 1;
@@ -160,7 +159,7 @@ function win_or_block() {
 }
 
 function get_smaller() {
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 9; i++) {
     if (x_positions[i] == 1) {
       return i;
     }
@@ -168,7 +167,7 @@ function get_smaller() {
 }
 
 function get_larger() {
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 9; i++) {
     if (x_positions[7 - i] == 1) {
       return 7 - i;
     }

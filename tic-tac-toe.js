@@ -10,7 +10,7 @@ var winning_combinations = [[0,1,2],
                             [2,3,4],
                             [0,8,4],
                             [6,8,2]];
-var human_played_first = false;
+// var human_played_first = false;
 var game_started = false;
 var last_human_move = null;
 var blocked = false;
@@ -67,7 +67,7 @@ function handle_mouse_click(e) {
   if (!game_started) {
     if (position == 7) {
       // human plays first
-      human_played_first = true;
+      // human_played_first = true;
       game_started = true;
     }
     else if (position == 3) {
@@ -82,7 +82,3 @@ function handle_mouse_click(e) {
   }
 }
 
-function x_clicks() {
-  return x_positions[0] + x_positions[1] + x_positions[2] + x_positions[3] + 
-    x_positions[4] + x_positions[5] + x_positions[6] + x_positions[7] + x_positions[8];
-}
