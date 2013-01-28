@@ -33,3 +33,7 @@ function get_smaller() {
     }
   }
 }
+
+function check_empty(position) {
+  return x_positions[position] == 0 && o_positions[position] == 0
+}

@@ -12,10 +12,6 @@ function put_o_in(position) {
   }
 }
 
-function check_empty(position) {
-  return x_positions[position] == 0 && o_positions[position] == 0
-}
-
 function draw_winning_line(combo) {
   // the get_x/y_from_position() returns the upper left corner, so adding
   // 50 gives us the center of the position

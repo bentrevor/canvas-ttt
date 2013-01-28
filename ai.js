@@ -1,6 +1,4 @@
 function move_for_computer() {
-  console.log(TOTAL_WINNING_COMBINATIONS);
-  console.log(TOTAL_POSITIONS);
   if (!human_played_first()) {
     switch (x_clicks()) {
       // first move was already to the center position
