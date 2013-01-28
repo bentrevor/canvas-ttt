@@ -83,3 +83,14 @@ function handle_mouse_click(e) {
   }
 }
 
+function game_over() {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
+    // prevent any more clicks from registering as valid moves
+    x_positions[i] = 1;
+    o_positions[i] = 1;
+  }
+
+  var game_over_text = document.createTextNode("You didn't win.  Refresh the page to play again.");
+
+  document.body.insertBefore(game_over_text, document.body.firstChild.nextSibling.nextSibling);
+}
