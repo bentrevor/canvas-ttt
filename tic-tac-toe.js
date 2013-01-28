@@ -20,7 +20,7 @@ var o_img = new Image();
 
 function init() {
   canvas = document.getElementById('myCanvas');
-  canvas.addEventListener("click", handle_mouse_click, false);
+  canvas.addEventListener("click", handle_first_click, false);
   context = canvas.getContext('2d');
   
   x_img.src = 'assets/x.png';
@@ -66,24 +66,27 @@ function get_cursor_position(e) {
   }
 }
 
+function handle_first_click(e) {
+  var answer = get_cursor_position(e);
 
+  // check if get_cursor_position returned a string
+  if (answer.constructor === String) {
+    if (answer == "yes") {
+    }
+    else if (answer == "no") {
+      put_o_in(8);
+    }
+
+    begin_game();
+    canvas.removeEventListener("click", handle_first_click, false);
+    canvas.addEventListener("click", handle_mouse_click, false);
+  }
+}
 
 function handle_mouse_click(e) {
   var position = get_cursor_position(e);
 
-  // handle first click to decide who goes first
-  if (!game_started) {
-    if (position == "yes") {
-      // human plays first
-      begin_game();
-    }
-    else if (position == "no") {
-      // computer plays first
-      put_o_in(8);
-      begin_game();
-    }
-  }
-  else if (check_empty(position)){
+  if (check_empty(position)){
       put_x_in(position);
       move_for_computer();
   }
