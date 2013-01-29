@@ -83,8 +83,8 @@ function handle_first_click(e) {
 function handle_mouse_click(e) {
   var position = get_cursor_position(e);
 
-  if (check_empty(position)){
-      put_x_in(position);
+  // only call move_for_computer() if position was a valid move
+  if (move_for_human(position)){
       move_for_computer(position);
   }
 }

@@ -18,7 +18,7 @@ function human_played_first() {
 }
 
 function check_empty(position) {
-  return x_positions[position] == 0 && o_positions[position] == 0
+  return x_positions[position] == 0 && o_positions[position] == 0;
 }
 
 // these functions return the larger/smaller of the first two human moves

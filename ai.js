@@ -1,9 +1,9 @@
-function move_for_computer(position) {
+function move_for_computer(last_human_move) {
   if (!human_played_first()) {
     switch (x_clicks()) {
       // first move was already to the center position
       case 1: // second move
-        put_o_in((position + 3) % 8);
+        put_o_in((last_human_move + 3) % 8);
         break;
       case 4: // after 4 Human moves, the board is full and the game is tied
         default_move();
@@ -20,7 +20,7 @@ function move_for_computer(position) {
         default_move();
         break;
       case 2:
-        if (position == 4) {
+        if (last_human_move == 4) {
           put_o_in(2);
         }
         else {
@@ -142,5 +142,14 @@ function win_or_block() {
   try_to_win();
   blocked = false;
   try_to_block();
+}
+
+// returns a boolean so handle_mouse_click() knows if it was successful
+function move_for_human(position) {
+  if (check_empty(position)) {
+    put_x_in(position);
+    return true;
+  }
+  return false;
 }
 
