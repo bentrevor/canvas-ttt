@@ -68,8 +68,7 @@ function get_cursor_position(e) {
 function handle_first_click(e) {
   var answer = get_cursor_position(e);
 
-  // check if get_cursor_position() returned a string
-  if (answer.constructor === String) {
+  if (typeof(answer) == "string") {
     if (answer == "yes") {
     }
     else if (answer == "no") {
