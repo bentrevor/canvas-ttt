@@ -81,3 +81,13 @@ function computer_wins() {
 
   return -1;
 }
+
+function board_is_full() {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
+    if (check_empty(i) == 1) {
+      return false;
+    }
+  }
+
+  return true;
+}

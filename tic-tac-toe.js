@@ -86,7 +86,7 @@ function handle_mouse_click(e) {
   if (move_for_human(position)){
     computer_move = decide_for_computer(position);
     if (computer_move == -1) {
-      draw_game_over_text();
+      game_over();
     }
 
     put_o_in(computer_move);
@@ -94,9 +94,18 @@ function handle_mouse_click(e) {
     var winning_combo_index = computer_wins();
     if (winning_combo_index != -1) {
       draw_winning_line(winning_combo_index);
-      draw_game_over_text();
+      game_over();
+    }
+
+    if (board_is_full()) {
+      game_over();
     }
   }
+}
+
+function game_over() {
+  draw_game_over_text();
+  canvas.removeEventListener("click", handle_mouse_click, false);
 }
 
 // returns a boolean so handle_mouse_click() knows if it was successful
