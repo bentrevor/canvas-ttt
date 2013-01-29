@@ -104,7 +104,7 @@ function try_to_block() {
     for (var i = 0; i < 3; i++) {
       var blocking_move = winning_combinations[combo_index][i];
 
-      if (o_positions[blocking_move] == 0) {
+      if (x_positions[blocking_move] == 0) {
         return blocking_move;
       }
     }
@@ -116,12 +116,11 @@ function try_to_block() {
 function default_move() {
   var move = win_or_block();
   if (move != -1) { return move; }
-  if (!blocked) {
-    for (var i = 0; i < TOTAL_POSITIONS; i++) {
-      if (check_empty(i)) {
-        return i;
-        break;
-      }
+  
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
+    if (check_empty(i)) {
+      return i;
+      break;
     }
   }
 }
@@ -129,7 +128,7 @@ function default_move() {
 function win_or_block() {
   var winner = try_to_win();
   if (winner != -1) { return winner; }
-  blocked = false;
+
   var blocker = try_to_block();
   if (blocker != -1) { return blocker; }
 
