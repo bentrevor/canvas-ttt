@@ -85,7 +85,8 @@ function handle_mouse_click(e) {
 
   // only call move_for_computer() if position was a valid move
   if (move_for_human(position)){
-      move_for_computer(position);
+      console.log(x_clicks());
+      put_o_in(move_for_computer(position));
   }
 }
 

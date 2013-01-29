@@ -3,42 +3,42 @@ function move_for_computer(last_human_move) {
     switch (x_clicks()) {
       // first move was already to the center position
       case 1: // second move
-        put_o_in((last_human_move + 3) % 8);
+        return (last_human_move + 3) % 8;
         break;
       case 4: // after 4 Human moves, the board is full and the game is tied
-        default_move();
+        return default_move();
         game_over();
         break;
       default:
-        default_move();
+        return default_move();
     }
   }
 
   else if (x_positions[8] == 1) { // if Human played center first
     switch (x_clicks()) {
       case 1:
-        default_move();
+        return default_move();
         break;
       case 2:
         if (last_human_move == 4) {
-          put_o_in(2);
+          return 2;
         }
         else {
-          default_move();
+          return default_move();
         }
         break;
       case 5:
         game_over();
         break;
       default:
-        default_move();
+        return default_move();
     }
   }
 
   else { // Human played non-center first
     switch (x_clicks()) {
       case 1:
-        put_o_in(8);
+        return 8;
         break;
       case 2:
         win_or_block();
@@ -49,25 +49,25 @@ function move_for_computer(last_human_move) {
         if (smaller % 2 == 1 && larger % 2 == 1) {
           // handle special case
           if (smaller == 1 && larger == 7) {
-            put_o_in(0);
+            return 0;
           }
           else {
-            put_o_in((smaller + larger)/2);
+            return (smaller + larger)/2;
           }
         }
         
         // if first two moves are opposite corners, move to any edge
         else if (smaller % 2 == 0 && larger - smaller == 4) {
-          put_o_in(1);
+          return 1;
         }
 
         // if first two moves are corner and non-adjacent edge, move between smaller gap
         else if (larger - smaller == 3) {
-          put_o_in(larger - 1);
+          return larger - 1;
         }
 
         else if (larger - smaller == 5) {
-          put_o_in((larger + 1) % 8);
+          return (larger + 1) % 8;
         }
 
         break;
@@ -76,7 +76,7 @@ function move_for_computer(last_human_move) {
         break;
 
       default:
-        default_move();
+        return default_move();
     }
   }
 }
@@ -96,16 +96,19 @@ function try_to_win() {
         var final_move = winning_combo[j];
 
         if (o_positions[final_move] == 0) {
-          put_o_in(final_move);
           game_over();
           draw_winning_line(i);
+          return final_move;
         }
       }
     }
   }
+
+  return -1;
 }
 
 function try_to_block() {
+  console.log("try_to_block()");
   // same logic as the try_to_win() function
   for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
     var winning_combo = winning_combinations[i];
@@ -118,20 +121,26 @@ function try_to_block() {
         var blocking_move = winning_combo[j];
 
         if (x_positions[blocking_move] == 0) {
-          put_o_in(blocking_move);
           blocked = true;
+          console.log(blocking_move);
+
+          return blocking_move;
         }
       }
     }
   }
+
+  return -1;
 }
 
 function default_move() {
-  win_or_block();
+  console.log("default_move()");
+  var move = win_or_block();
+  if (move != -1) { return move; }
   if (!blocked) {
     for (var i = 0; i < TOTAL_POSITIONS; i++) {
       if (check_empty(i)) {
-        put_o_in(i);
+        return i;
         break;
       }
     }
@@ -139,8 +148,12 @@ function default_move() {
 }
 
 function win_or_block() {
-  try_to_win();
+  var winner = try_to_win();
+  if (winner != -1) { return winner; }
   blocked = false;
-  try_to_block();
+  var blocker = try_to_block();
+  if (blocker != -1) { return blocker; }
+
+  return -1;
 }
 
