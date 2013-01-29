@@ -99,3 +99,11 @@ function game_over() {
   draw_game_over_text();
 }
 
+// returns a boolean so handle_mouse_click() knows if it was successful
+function move_for_human(position) {
+  if (check_empty(position)) {
+    put_x_in(position);
+    return true;
+  }
+  return false;
+}
