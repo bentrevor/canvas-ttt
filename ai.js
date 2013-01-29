@@ -1,9 +1,9 @@
-function move_for_computer() {
+function move_for_computer(position) {
   if (!human_played_first()) {
     switch (x_clicks()) {
       // first move was already to the center position
       case 1: // second move
-        put_o_in((last_human_move + 3) % 8);
+        put_o_in((position + 3) % 8);
         break;
       case 4: // after 4 Human moves, the board is full and the game is tied
         default_move();
@@ -20,7 +20,7 @@ function move_for_computer() {
         default_move();
         break;
       case 2:
-        if (last_human_move == 4) {
+        if (position == 4) {
           put_o_in(2);
         }
         else {

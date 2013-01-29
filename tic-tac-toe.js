@@ -12,7 +12,6 @@ var winning_combinations = [[0,1,2],
                             [6,8,2]];
 var TOTAL_POSITIONS = x_positions.length;
 var TOTAL_WINNING_COMBINATIONS = winning_combinations.length;
-var last_human_move = null;
 var blocked = false;
 var x_img = new Image();
 var o_img = new Image();
@@ -86,7 +85,7 @@ function handle_mouse_click(e) {
 
   if (check_empty(position)){
       put_x_in(position);
-      move_for_computer();
+      move_for_computer(position);
   }
 }
 
