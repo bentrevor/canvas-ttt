@@ -41,7 +41,7 @@ function move_for_computer(last_human_move) {
         return 8;
         break;
       case 2:
-        win_or_block();
+        if (win_or_block() != -1) { return win_or_block(); }
         var smaller = get_smaller();
         var larger = get_larger();
 
@@ -82,24 +82,15 @@ function move_for_computer(last_human_move) {
 }
 
 function try_to_win() {
-  // iterate through winning_combinations array
-  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
-    var winning_combo = winning_combinations[i];
-    // if the Computer has exactly 2 out of 3 positions in any winning combination
-    // and the Human doesn't have the other one, the Computer can win
-    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
-        o_positions[winning_combo[2]] == 2) && (x_positions[winning_combo[0]] + 
-        x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 0))
-      {
-      // find the empty position, fill it in with O, and end the game
-      for (var j = 0; j < 3; j++) {
-        var final_move = winning_combo[j];
+  var combo_index = computer_can_win();
+  if (combo_index != -1) {
+    for (var i = 0; i < 3; i++) {
+      var final_move = winning_combinations[combo_index][i];
 
-        if (o_positions[final_move] == 0) {
-          game_over();
-          draw_winning_line(i);
-          return final_move;
-        }
+      if (o_positions[final_move] == 0) {
+        game_over();
+        draw_winning_line(combo_index);
+        return final_move;
       }
     }
   }
@@ -108,24 +99,13 @@ function try_to_win() {
 }
 
 function try_to_block() {
-  console.log("try_to_block()");
-  // same logic as the try_to_win() function
-  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
-    var winning_combo = winning_combinations[i];
+  var combo_index = human_can_win();
+  if (combo_index != -1) {
+    for (var i = 0; i < 3; i++) {
+      var blocking_move = winning_combinations[combo_index][i];
 
-    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
-        o_positions[winning_combo[2]] == 0) && (x_positions[winning_combo[0]] + 
-        x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 2))
-    {
-      for (var j = 0; j < 3; j++) {
-        var blocking_move = winning_combo[j];
-
-        if (x_positions[blocking_move] == 0) {
-          blocked = true;
-          console.log(blocking_move);
-
-          return blocking_move;
-        }
+      if (o_positions[blocking_move] == 0) {
+        return blocking_move;
       }
     }
   }
@@ -134,7 +114,6 @@ function try_to_block() {
 }
 
 function default_move() {
-  console.log("default_move()");
   var move = win_or_block();
   if (move != -1) { return move; }
   if (!blocked) {

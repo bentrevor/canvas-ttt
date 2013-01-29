@@ -37,3 +37,33 @@ function get_smaller() {
     }
   }
 }
+
+function computer_can_win() {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
+    var winning_combo = winning_combinations[i];
+
+    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
+        o_positions[winning_combo[2]] == 2) && (x_positions[winning_combo[0]] + 
+        x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 0))
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function human_can_win() {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
+    var winning_combo = winning_combinations[i];
+
+    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
+        o_positions[winning_combo[2]] == 0) && (x_positions[winning_combo[0]] + 
+        x_positions[winning_combo[1]] + x_positions[winning_combo[2]] == 2))
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}
