@@ -84,19 +84,19 @@ function handle_mouse_click(e) {
 
   // only call move_for_computer() if position was a valid move
   if (move_for_human(position)){
-      console.log(move_for_computer(position));
-      put_o_in(move_for_computer(position));
-  }
-}
+    computer_move = decide_for_computer(position);
+    if (computer_move == -1) {
+      draw_game_over_text();
+    }
 
-function game_over() {
-  // prevent any more clicks from registering as valid moves
-  for (var i = 0; i < TOTAL_POSITIONS; i++) {
-    x_positions[i] = 1;
-    o_positions[i] = 1;
-  }
+    put_o_in(computer_move);
 
-  draw_game_over_text();
+    var winning_combo_index = computer_wins();
+    if (winning_combo_index != -1) {
+      draw_winning_line(winning_combo_index);
+      draw_game_over_text();
+    }
+  }
 }
 
 // returns a boolean so handle_mouse_click() knows if it was successful

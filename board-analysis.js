@@ -67,3 +67,17 @@ function human_can_win() {
 
   return -1;
 }
+
+function computer_wins() {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
+    var winning_combo = winning_combinations[i];
+
+    if ((o_positions[winning_combo[0]] + o_positions[winning_combo[1]] +
+        o_positions[winning_combo[2]] == 3))
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}
