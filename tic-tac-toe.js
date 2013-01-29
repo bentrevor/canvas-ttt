@@ -12,7 +12,6 @@ var winning_combinations = [[0,1,2],
                             [6,8,2]];
 var TOTAL_POSITIONS = x_positions.length;
 var TOTAL_WINNING_COMBINATIONS = winning_combinations.length;
-var game_started = false;
 var last_human_move = null;
 var blocked = false;
 var x_img = new Image();
@@ -69,7 +68,7 @@ function get_cursor_position(e) {
 function handle_first_click(e) {
   var answer = get_cursor_position(e);
 
-  // check if get_cursor_position returned a string
+  // check if get_cursor_position() returned a string
   if (answer.constructor === String) {
     if (answer == "yes") {
     }
@@ -77,7 +76,7 @@ function handle_first_click(e) {
       put_o_in(8);
     }
 
-    begin_game();
+    context.clearRect(0, 300, 300, 150);
     canvas.removeEventListener("click", handle_first_click, false);
     canvas.addEventListener("click", handle_mouse_click, false);
   }
@@ -93,8 +92,8 @@ function handle_mouse_click(e) {
 }
 
 function game_over() {
+  // prevent any more clicks from registering as valid moves
   for (var i = 0; i < TOTAL_POSITIONS; i++) {
-    // prevent any more clicks from registering as valid moves
     x_positions[i] = 1;
     o_positions[i] = 1;
   }
@@ -102,7 +101,3 @@ function game_over() {
   draw_game_over_text();
 }
 
-function begin_game() {
-  game_started = true;
-  context.clearRect(0, 300, 300, 150);
-}
