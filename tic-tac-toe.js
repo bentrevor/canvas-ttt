@@ -82,8 +82,10 @@ function handle_first_click(e) {
 function handle_mouse_click(e) {
   var position = get_cursor_position(e);
 
-  // only call move_for_computer() if position was a valid move
-  if (move_for_human(position)){
+  // only call decide_for_computer() if position was a valid move
+  if (check_empty(position)){
+    make_move('x', position);
+
     computer_move = decide_for_computer(position);
     if (computer_move == -1) {
       game_over();
@@ -108,11 +110,3 @@ function game_over() {
   canvas.removeEventListener("click", handle_mouse_click, false);
 }
 
-// returns a boolean so handle_mouse_click() knows if it was successful
-function move_for_human(position) {
-  if (check_empty(position)) {
-    make_move('x', position);
-    return true;
-  }
-  return false;
-}
