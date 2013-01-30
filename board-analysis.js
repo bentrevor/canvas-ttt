@@ -68,6 +68,16 @@ function human_can_win() {
   return -1;
 }
 
+function board_is_full() {
+  for (var i = 0; i < TOTAL_POSITIONS; i++) {
+    if (check_empty(i) == 1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function computer_wins() {
   for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
     var winning_combo = winning_combinations[i];
@@ -82,12 +92,16 @@ function computer_wins() {
   return -1;
 }
 
-function board_is_full() {
-  for (var i = 0; i < TOTAL_POSITIONS; i++) {
-    if (check_empty(i) == 1) {
-      return false;
+function human_wins() {
+  for (var i = 0; i < TOTAL_WINNING_COMBINATIONS; i++) {
+    var winning_combo = winning_combinations[i];
+
+    if ((x_positions[winning_combo[0]] + x_positions[winning_combo[1]] +
+        x_positions[winning_combo[2]] == 3))
+    {
+      return "bad";
     }
   }
 
-  return true;
+  return "good";
 }
