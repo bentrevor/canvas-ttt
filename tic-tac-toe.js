@@ -90,17 +90,17 @@ function handle_mouse_click(e) {
     if (computer_move == -1) {
       game_over();
     }
+    else {
+      make_move('o', computer_move);
 
-    make_move('o', computer_move);
-
-    var winning_combo_index = computer_wins();
-    if (winning_combo_index != -1) {
-      draw_winning_line(winning_combo_index);
-      game_over();
-    }
-
-    if (board_is_full()) {
-      game_over();
+      var winning_combo_index = computer_wins();
+      if (winning_combo_index != -1) {
+        draw_winning_line(winning_combo_index);
+        game_over();
+      }
+      else if (board_is_full()) {
+        game_over();
+      }
     }
   }
 }
@@ -108,5 +108,12 @@ function handle_mouse_click(e) {
 function game_over() {
   draw_game_over_text();
   canvas.removeEventListener("click", handle_mouse_click, false);
+  add_game_over_element();
 }
 
+function add_game_over_element() {
+  var game_over_text = document.createElement('p');
+  game_over_text.setAttribute('id', human_wins());
+
+  document.body.insertBefore(game_over_text, document.body.firstChild.nextSibling.nextSibling);
+}
