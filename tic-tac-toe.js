@@ -45,18 +45,18 @@ function get_cursor_position(e) {
 
   if (y < 100) {
     if (x < 100)            { return 0; }
-    if (x > 100 && x < 200) { return 1; }
-    if (x > 200)            { return 2; }
+    if (x > 110 && x < 200) { return 1; }
+    if (x > 210)            { return 2; }
   }
-  if (y > 100 && y < 200) {
+  if (y > 110 && y < 200) {
     if (x < 100)            { return 7; }
-    if (x > 100 && x < 200) { return 8; }
-    if (x > 200)            { return 3; } 
+    if (x > 110 && x < 200) { return 8; }
+    if (x > 210)            { return 3; } 
   }
-  if (y > 200 && y < 300) {
+  if (y > 210 && y < 300) {
     if (x < 100)            { return 6; }
-    if (x > 100 && x < 200) { return 5; }
-    if (x > 200)            { return 4; }
+    if (x > 110 && x < 200) { return 5; }
+    if (x > 210)            { return 4; }
   }
 
   if (y > 380 && y < 400) {
