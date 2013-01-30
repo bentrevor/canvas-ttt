@@ -32,8 +32,8 @@ function place_image(image, position) {
   // the get_x/y_from_position() returns the upper left corner of a position,
   // and the x and o images are about 90px by 90px, so adding 5 puts the image
   // of the x or the o in the center of the position
-  var x = get_x_from_position(position) + 5;
-  var y = get_y_from_position(position) + 5;
+  var x = get_x_from_position(position) + 11;
+  var y = get_y_from_position(position) + 11;
 
   context.drawImage(image, x, y);
 }

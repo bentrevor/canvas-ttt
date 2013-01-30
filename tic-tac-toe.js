@@ -24,6 +24,8 @@ function init() {
   o_img.src = 'assets/o.png';
 
   draw_menu();
+
+  add_game_over_element();
 }
 
 function get_cursor_position(e) {
@@ -67,9 +69,7 @@ function handle_first_click(e) {
   var answer = get_cursor_position(e);
 
   if (typeof(answer) == "string") {
-    if (answer == "yes") {
-    }
-    else if (answer == "no") {
+    if (answer == "no") {
       make_move('o', 8);
     }
 
