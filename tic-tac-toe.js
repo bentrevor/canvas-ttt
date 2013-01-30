@@ -70,7 +70,7 @@ function handle_first_click(e) {
     if (answer == "yes") {
     }
     else if (answer == "no") {
-      put_o_in(8);
+      make_move('o', 8);
     }
 
     context.clearRect(0, 300, 300, 150);
@@ -89,7 +89,7 @@ function handle_mouse_click(e) {
       game_over();
     }
 
-    put_o_in(computer_move);
+    make_move('o', computer_move);
 
     var winning_combo_index = computer_wins();
     if (winning_combo_index != -1) {
@@ -111,7 +111,7 @@ function game_over() {
 // returns a boolean so handle_mouse_click() knows if it was successful
 function move_for_human(position) {
   if (check_empty(position)) {
-    put_x_in(position);
+    make_move('x', position);
     return true;
   }
   return false;

@@ -1,13 +1,12 @@
-function put_x_in(position) {
-  // don't need to check_empty() because it is already called in handle_mouse_click()
-  place_image(x_img, position);
-  x_positions[position] = 1;
-}
+function make_move(player, position) {
+  if (player == 'x') {
+    place_image(x_img, position);
+    x_positions[position] = 1;
+  }
 
-function put_o_in(position) {
-  if (check_empty(position)){
+  else if (check_empty(position)) {
     place_image(o_img, position);
-    o_positions[position] = 1;
+    o_positions[position] = 1; 
   }
 }
 
