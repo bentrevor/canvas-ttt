@@ -16,38 +16,10 @@ function decide_for_computer(last_human_move) {
         if (last_human_move == 4) {
           return 2;
         }
-        else { return default_move(); }
       }
 
       else if (human_played_first()) {
-        if (win_or_block() != -1) { return win_or_block(); }
-        var smaller = get_smaller();
-        var larger = get_larger();
-
-        // if first two moves are odd (edges), move exactly between them
-        if (smaller % 2 == 1 && larger % 2 == 1) {
-          // handle special case
-          if (smaller == 1 && larger == 7) {
-            return 0;
-          }
-          else {
-            return (smaller + larger)/2;
-          }
-        }
-        
-        // if first two moves are opposite corners, move to any edge
-        else if (smaller % 2 == 0 && larger - smaller == 4) {
-          return 1;
-        }
-
-        // if first two moves are corner and non-adjacent edge, move between smaller gap
-        else if (larger - smaller == 3) {
-          return larger - 1;
-        }
-
-        else if (larger - smaller == 5) {
-          return (larger + 1) % 8;
-        }
+        return handle_second_click();
       }
 
     default:
@@ -109,3 +81,34 @@ function win_or_block() {
   return -1;
 }
 
+// handles special cases for when the human plays non-center first
+function handle_second_click() {
+  if (win_or_block() != -1) { return win_or_block(); }
+  var smaller = get_smaller();
+  var larger = get_larger();
+
+  // if first two moves are odd (edges), move exactly between them
+  if (smaller % 2 == 1 && larger % 2 == 1) {
+    // handle special case
+    if (smaller == 1 && larger == 7) {
+      return 0;
+    }
+    else {
+      return (smaller + larger)/2;
+    }
+  }
+  
+  // if first two moves are opposite corners, move to any edge
+  else if (smaller % 2 == 0 && larger - smaller == 4) {
+    return 1;
+  }
+
+  // if first two moves are corner and non-adjacent edge, move between smaller gap
+  else if (larger - smaller == 3) {
+    return larger - 1;
+  }
+
+  else if (larger - smaller == 5) {
+    return (larger + 1) % 8;
+  }
+}
