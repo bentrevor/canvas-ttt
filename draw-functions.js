@@ -39,14 +39,14 @@ function place_image(image, position) {
 }
 
 function get_x_from_position(position) {
-  if (position == 8) return 100;
+  if (position == CENTER) return 100;
 
   var coordinate = (parseInt(2.5 * Math.sin(position * .5)) * 100);
   return (coordinate > 0) ? coordinate : 0;
 }
 
 function get_y_from_position(position) {
-  if (position == 8) return 100;
+  if (position == CENTER) return 100;
 
   var coordinate = (parseInt(2.5 * Math.sin((position - 2) * .5)) * 100);
   return (coordinate > 0) ? coordinate : 0;

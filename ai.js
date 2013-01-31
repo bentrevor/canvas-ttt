@@ -1,20 +1,20 @@
 function decide_for_computer(last_human_move) {
   switch (x_clicks()) {
     case 0:
-      return 8;
+      return CENTER;
 
     case 1:
-      if (check_empty(8)) {
-        return 8;
+      if (check_empty(CENTER)) {
+        return CENTER;
       }
       else if (!human_played_first()) {
         return (last_human_move + 3) % 8;
       }
 
     case 2:
-      if (x_positions[8] == 1) {
-        if (last_human_move == 4) {
-          return 2;
+      if (x_positions[CENTER] == 1) {
+        if (last_human_move == BOTTOM_RIGHT) {
+          return TOP_RIGHT;
         }
       }
 
@@ -90,8 +90,8 @@ function handle_second_click() {
   // if first two moves are odd (edges), move exactly between them
   if (smaller % 2 == 1 && larger % 2 == 1) {
     // handle special case
-    if (smaller == 1 && larger == 7) {
-      return 0;
+    if (smaller == TOP_MIDDLE && larger == LEFT_MIDDLE) {
+      return TOP_LEFT;
     }
     else {
       return (smaller + larger)/2;
@@ -100,7 +100,7 @@ function handle_second_click() {
   
   // if first two moves are opposite corners, move to any edge
   else if (smaller % 2 == 0 && larger - smaller == 4) {
-    return 1;
+    return TOP_MIDDLE;
   }
 
   // if first two moves are corner and non-adjacent edge, move between smaller gap
