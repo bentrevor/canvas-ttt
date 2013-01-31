@@ -12,11 +12,11 @@ function make_move(player, position) {
 
 function draw_winning_line(combo) {
   // the get_x/y_from_position() returns the upper left corner, so adding
-  // 50 gives us the center of the position
-  var start_x = get_x_from_position(winning_combinations[combo][0]) + 50;
-  var start_y = get_y_from_position(winning_combinations[combo][0]) + 50;
-  var end_x = get_x_from_position(winning_combinations[combo][2]) + 50;
-  var end_y = get_y_from_position(winning_combinations[combo][2]) + 50;
+  // 55 gives us the center of the position
+  var start_x = get_x_from_position(winning_combinations[combo][0]) + 55;
+  var start_y = get_y_from_position(winning_combinations[combo][0]) + 55;
+  var end_x = get_x_from_position(winning_combinations[combo][2]) + 55;
+  var end_y = get_y_from_position(winning_combinations[combo][2]) + 55;
   
   context.lineWidth = 5;
   context.strokeStyle = "red";
